@@ -24,10 +24,13 @@ export default function App() {
       <Route element={<RutaProtegida />}>
         <Route element={<Layout />}>
           <Route path="/" element={<Inicio />} />
-          <Route path="/usuarios" element={<Usuarios />} />
+          <Route element={<RequiereRol roles={["admin", "editor"]} />}>
+            <Route path="/usuarios" element={<Usuarios />} />
+          </Route>
           <Route path="/perfil" element={<Perfil />} />
-          <Route element={<RequiereRol roles={["admin"]} />} />
-          <Route path="/configuracion" element={<Configuracion />} />
+          <Route element={<RequiereRol roles={["admin"]} />}>
+            <Route path="/configuracion" element={<Configuracion />} />
+          </Route>
         </Route>
       </Route>
 
